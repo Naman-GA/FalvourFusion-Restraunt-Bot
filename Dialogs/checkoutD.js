@@ -95,7 +95,7 @@ class checkOutOrder extends ComponentDialog {
       try {
         const data = await newOrderData.save();
         const orderDetails =
-          `Order ID: ${newOrderData.orderId}\n` +
+          `Order ID: ${data.orderId}\n` +
           `Name: ${stepContext.values.name}\n` +
           `Mobile Number: ${stepContext.values.mobileNumber}\n` +
           `Delivery Address: ${stepContext.values.address}\n` +
@@ -105,14 +105,14 @@ class checkOutOrder extends ComponentDialog {
           orderDetails += `- Item: ${item.name}, Quantity: ${item.quantity}, Price: Rs.${item.price}/-\n`;
         }
 
-        orderDetails += `Total Order Amount: Rs.${newOrderData.totalOrderAmount}/-`;
+        orderDetails += `Total Order Amount: Rs.${data.totalOrderAmount}/-`;
 
         // Send order confirmation email
         const recipientEmail = "ngmrach15@gmail.com"; // Replace with the customer's email
         const emailSubject = "Order Confirmation";
 
         const mail = {
-          from: "your-email@gmail.com", // Replace with your sender email
+          from: "ngmarch15@gmail.com", // Replace with your sender email
           to: recipientEmail,
           subject: emailSubject,
           text: orderDetails, // Use the formatted order details here
