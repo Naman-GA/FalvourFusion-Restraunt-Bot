@@ -120,10 +120,14 @@ class checkOutOrder extends ComponentDialog {
 
         try {
           const messageId = await sendEmail(mail);
+          await stepContext.context.sendActivity(
+            `Order confirmation email sent successfully. Message ID: ${messageId}`
+          );
           console.log(
             `Order confirmation email sent successfully. Message ID: ${messageId}`
           );
         } catch (error) {
+          await stepContext.context.sendActivity(error);
           console.error("Error sending order confirmation email:", error);
         }
         const orderSummaryCard = CardFactory.adaptiveCard({
