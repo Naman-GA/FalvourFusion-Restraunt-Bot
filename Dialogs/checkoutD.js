@@ -94,7 +94,7 @@ class checkOutOrder extends ComponentDialog {
       });
       try {
         const data = await newOrderData.save();
-        const orderDetails =
+        let orderDetails =
           `Order ID: ${data.orderId}\n` +
           `Name: ${stepContext.values.name}\n` +
           `Mobile Number: ${stepContext.values.mobileNumber}\n` +
