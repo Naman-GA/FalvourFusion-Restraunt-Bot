@@ -13,6 +13,7 @@ const NAME_PROMPT = "namePrompt";
 const MOBILE_NUMBER_PROMPT = "mobileNumberPrompt";
 const ADDRESS_PROMPT = "addressPrompt";
 const CHOICE_PROMPT = "choiceprompt";
+const { sendEmail } = require("../utils/nodemailer");
 const {
   checkoutOrder,
   cancelorderDialog,
@@ -93,6 +94,38 @@ class checkOutOrder extends ComponentDialog {
       });
       try {
         const data = await newOrderData.save();
+        const orderDetails =
+          `Order ID: ${newOrderData.orderId}\n` +
+          `Name: ${stepContext.values.name}\n` +
+          `Mobile Number: ${stepContext.values.mobileNumber}\n` +
+          `Delivery Address: ${stepContext.values.address}\n` +
+          "Order Details:\n";
+
+        for (const item of cartItems) {
+          orderDetails += `- Item: ${item.name}, Quantity: ${item.quantity}, Price: Rs.${item.price}/-\n`;
+        }
+
+        orderDetails += `Total Order Amount: Rs.${newOrderData.totalOrderAmount}/-`;
+
+        // Send order confirmation email
+        const recipientEmail = "ngmrach15@gmail.com"; // Replace with the customer's email
+        const emailSubject = "Order Confirmation";
+
+        const mail = {
+          from: "your-email@gmail.com", // Replace with your sender email
+          to: recipientEmail,
+          subject: emailSubject,
+          text: orderDetails, // Use the formatted order details here
+        };
+
+        try {
+          const messageId = await sendEmail(mail);
+          console.log(
+            `Order confirmation email sent successfully. Message ID: ${messageId}`
+          );
+        } catch (error) {
+          console.error("Error sending order confirmation email:", error);
+        }
         const orderSummaryCard = CardFactory.adaptiveCard({
           $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
           type: "AdaptiveCard",
