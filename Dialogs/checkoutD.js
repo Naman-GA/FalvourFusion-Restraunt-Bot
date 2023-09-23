@@ -13,7 +13,7 @@ const NAME_PROMPT = "namePrompt";
 const MOBILE_NUMBER_PROMPT = "mobileNumberPrompt";
 const ADDRESS_PROMPT = "addressPrompt";
 const CHOICE_PROMPT = "choiceprompt";
-const { sendEmail } = require("../utils/nodemailer");
+const sendEmail = require("../utils/nodemailer");
 const {
   checkoutOrder,
   cancelorderDialog,
