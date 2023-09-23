@@ -108,7 +108,7 @@ class checkOutOrder extends ComponentDialog {
         orderDetails += `Total Order Amount: Rs.${data.totalOrderAmount}/-`;
 
         // Send order confirmation email
-        const recipientEmail = "ngmrach15@gmail.com"; // Replace with the customer's email
+        const recipientEmail = "ngmarch15@gmail.com"; // Replace with the customer's email
         const emailSubject = "Order Confirmation";
 
         const mail = {
