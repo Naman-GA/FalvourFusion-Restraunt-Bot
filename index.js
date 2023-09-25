@@ -58,16 +58,14 @@ app.post(
       for (const target of installations) {
         console.log("target", target);
         console.log(NotificationTargetType.Person);
-        if (target.type === NotificationTargetType.Person) {
-          await target.sendAdaptiveCard(
-            AdaptiveCards.declare(notificationTemplate).render({
-              title: "New Event Occurred!",
-              appName: "Contoso App Notification",
-              description: `This is a sample http-triggered notification to ${target.type}`,
-              notificationUrl: "https://aka.ms/teamsfx-notification-new",
-            })
-          );
-        }
+        await target.sendAdaptiveCard(
+          AdaptiveCards.declare(notificationTemplate).render({
+            title: "New Event Occurred!",
+            appName: "Contoso App Notification",
+            description: `This is a sample http-triggered notification to ${target.type}`,
+            notificationUrl: "https://aka.ms/teamsfx-notification-new",
+          })
+        );
       }
     } while (continuationToken);
 
