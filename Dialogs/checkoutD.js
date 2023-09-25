@@ -134,7 +134,7 @@ class checkOutOrder extends ComponentDialog {
           const response = await axios.post(notificationUrl, data);
           console.log(response);
           console.log("Notification request sent successfully:", response.data);
-        } catch (error) {
+        } catch (error) { 
           console.error("Error sending notification request:", error);
         }
         const orderSummaryCard = CardFactory.adaptiveCard({

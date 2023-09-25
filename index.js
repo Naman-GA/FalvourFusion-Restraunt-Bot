@@ -57,17 +57,19 @@ app.post(
       console.log("Hii");
       const installations = pagedData.data;
       continuationToken = pagedData.continuationToken;
-      console.log("installations",installations);
-      for (const target of installations) {
+      console.log("installations", installations);
+      for (const target of await notificationApp.notification.installations()) {
         console.log("target", target);
-        await target.sendAdaptiveCard(
-          AdaptiveCards.declare(notificationTemplate).render({
-            title: "New Event Occurred!",
-            appName: "Contoso App Notification",
-            description: `This is a sample http-triggered notification to ${target.type}`,
-            notificationUrl: "https://aka.ms/teamsfx-notification-new",
-          })
-        );
+        if (target.type === "Person") {
+          await target.sendAdaptiveCard(
+            AdaptiveCards.declare(notificationTemplate).render({
+              title: "New Event Occurred!",
+              appName: "Contoso App Notification",
+              description: `This is a sample http-triggered notification to ${target.type}`,
+              notificationUrl: "https://aka.ms/teamsfx-notification-new",
+            })
+          );
+        }
       }
     } while (continuationToken);
     console.log("inside while");
