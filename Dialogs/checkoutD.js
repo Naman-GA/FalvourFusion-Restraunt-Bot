@@ -132,6 +132,7 @@ class checkOutOrder extends ComponentDialog {
 
         try {
           const response = await axios.post(notificationUrl);
+          console.log(response);
           console.log("Notification request sent successfully:", response.data);
         } catch (error) {
           console.error("Error sending notification request:", error);
