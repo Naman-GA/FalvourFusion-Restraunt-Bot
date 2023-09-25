@@ -14,6 +14,7 @@ const MOBILE_NUMBER_PROMPT = "mobileNumberPrompt";
 const ADDRESS_PROMPT = "addressPrompt";
 const CHOICE_PROMPT = "choiceprompt";
 const sendEmail = require("../utils/nodemailer");
+const axios = require("axios");
 const {
   checkoutOrder,
   cancelorderDialog,
@@ -94,40 +95,45 @@ class checkOutOrder extends ComponentDialog {
       });
       try {
         const data = await newOrderData.save();
-        let orderDetails =
-          `Order ID: ${data.orderId}\n` +
-          `Name: ${stepContext.values.name}\n` +
-          `Mobile Number: ${stepContext.values.mobileNumber}\n` +
-          `Delivery Address: ${stepContext.values.address}\n` +
-          "Order Details:\n";
+        // let orderDetails =
+        //   `Order ID: ${data.orderId}\n` +
+        //   `Name: ${stepContext.values.name}\n` +
+        //   `Mobile Number: ${stepContext.values.mobileNumber}\n` +
+        //   `Delivery Address: ${stepContext.values.address}\n` +
+        //   "Order Details:\n";
 
-        for (const item of cartItems) {
-          orderDetails += `- Item: ${item.name}, Quantity: ${item.quantity}, Price: Rs.${item.price}/-\n`;
-        }
+        // for (const item of cartItems) {
+        //   orderDetails += `- Item: ${item.name}, Quantity: ${item.quantity}, Price: Rs.${item.price}/-\n`;
+        // }
 
-        orderDetails += `Total Order Amount: Rs.${data.totalOrderAmount}/-`;
+        // orderDetails += `Total Order Amount: Rs.${data.totalOrderAmount}/-`;
 
-        // Send order confirmation email
-        const recipientEmail = [
-          "esha.kapoor@celebaltech.com",
-          "vinayak.yadav@celebaltech.com",
-        ]; // Replace with the customer's email
-        const emailSubject = "Order Confirmation";
+        // // Send order confirmation email
+        // const recipientEmail = "n"; // Replace with the customer's email
+        // const emailSubject = "Order Confirmation";
 
-        const mail = {
-          from: "ngmarch15@gmail.com", // Replace with your sender email
-          to: recipientEmail,
-          subject: emailSubject,
-          text: orderDetails, // Use the formatted order details here
-        };
+        // const mail = {
+        //   from: "ngmarch15@gmail.com", // Replace with your sender email
+        //   to: recipientEmail,
+        //   subject: emailSubject,
+        //   text: orderDetails, // Use the formatted order details here
+        // };
+
+        // try {
+        //   const messageId = await sendEmail(mail);
+        //   console.log(
+        //     `Order confirmation email sent successfully. Message ID: ${messageId}`
+        //   );
+        // } catch (error) {
+        //   console.error("Error sending order confirmation email:", error);
+        // }
+        const notificationUrl = "https:///api/notification"; // Replace with your bot's URL
 
         try {
-          const messageId = await sendEmail(mail);
-          console.log(
-            `Order confirmation email sent successfully. Message ID: ${messageId}`
-          );
+          const response = await axios.post(notificationUrl);
+          console.log("Notification request sent successfully:", response.data);
         } catch (error) {
-          console.error("Error sending order confirmation email:", error);
+          console.error("Error sending notification request:", error);
         }
         const orderSummaryCard = CardFactory.adaptiveCard({
           $schema: "http://adaptivecards.io/schemas/adaptive-card.json",

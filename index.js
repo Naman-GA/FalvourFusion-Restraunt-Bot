@@ -6,6 +6,9 @@ const {
   MemoryStorage,
   ConversationState,
 } = require("botbuilder");
+const notificationTemplate = require("./adaptiveCards/notification-default.json");
+const { notificationApp } = require("./initialize");
+const { AdaptiveCards } = require("@microsoft/adaptivecards-tools");
 const { Bot } = require("./bot");
 const { RootDialog } = require("./Dialogs/rootD");
 const dotenv = require("dotenv");
@@ -37,6 +40,38 @@ app.use("/api/messages", (req, res) => {
   });
 });
 
+app.post(
+  "/api/notification",
+  // Add more parsers if needed
+  async (req, res) => {
+    const pageSize = 100;
+    let continuationToken = undefined;
+    do {
+      const pagedData =
+        await notificationApp.notification.getPagedInstallations(
+          pageSize,
+          continuationToken
+        );
+      const installations = pagedData.data;
+      continuationToken = pagedData.continuationToken;
+
+      for (const target of installations) {
+        if (target.type === NotificationTargetType.Person) {
+          await target.sendAdaptiveCard(
+            AdaptiveCards.declare(notificationTemplate).render({
+              title: "New Event Occurred!",
+              appName: "Contoso App Notification",
+              description: `This is a sample http-triggered notification to ${target.type}`,
+              notificationUrl: "https://aka.ms/teamsfx-notification-new",
+            })
+          );
+        }
+      }
+    } while (continuationToken);
+
+    res.json({});
+  }
+);
 app.listen(3000, () => {
   console.log("Server Listening on 3000");
 });
