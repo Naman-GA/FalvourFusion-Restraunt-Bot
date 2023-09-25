@@ -45,6 +45,7 @@ app.post(
   // Add more parsers if needed
   async (req, res) => {
     const pageSize = 100;
+    console.log("pagesize", pageSize);
     let continuationToken = undefined;
     do {
       const pagedData =
@@ -52,6 +53,8 @@ app.post(
           pageSize,
           continuationToken
         );
+      console.log(pagedData);
+      console.log("Hii");
       const installations = pagedData.data;
       continuationToken = pagedData.continuationToken;
 
@@ -68,7 +71,7 @@ app.post(
         );
       }
     } while (continuationToken);
-
+    console.log("inside while");
     res.json({});
   }
 );
