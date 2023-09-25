@@ -40,7 +40,7 @@ app.use("/api/messages", (req, res) => {
   });
 });
 
-app.post(
+app.use(
   "/api/notification",
   // Add more parsers if needed
   async (req, res) => {
