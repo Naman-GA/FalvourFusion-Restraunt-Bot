@@ -56,6 +56,8 @@ app.post(
       continuationToken = pagedData.continuationToken;
 
       for (const target of installations) {
+        console.log("target", target);
+        console.log(NotificationTargetType.Person);
         if (target.type === NotificationTargetType.Person) {
           await target.sendAdaptiveCard(
             AdaptiveCards.declare(notificationTemplate).render({
