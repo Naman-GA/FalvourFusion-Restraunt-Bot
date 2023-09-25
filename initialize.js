@@ -6,8 +6,8 @@ const notificationApp = new ConversationBot({
   // The bot id and password to create CloudAdapter.
   // See https://aka.ms/about-bot-adapter to learn more about adapters.
   adapterConfig: {
-    MicrosoftAppId: "37497caf-1818-42fa-930a-1f14586c6bab",
-    MicrosoftAppPassword: "3Mc8Q~w.vAxbmNOtPpdgJ_872eKU9JY-d2jyXasp",
+    MicrosoftAppId: "4dec64d7-c13d-4fef-8edf-0840d7e65769",
+    MicrosoftAppPassword: "lir8Q~RuOYFB59dGxgtu2kkBXhidN8uBDkxSgas9",
     MicrosoftAppType: "MultiTenant",
   },
   // Enable notification

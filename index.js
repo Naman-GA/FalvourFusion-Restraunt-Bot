@@ -57,10 +57,9 @@ app.post(
       console.log("Hii");
       const installations = pagedData.data;
       continuationToken = pagedData.continuationToken;
-
+      console.log("installations",installations);
       for (const target of installations) {
         console.log("target", target);
-        console.log(NotificationTargetType.Person);
         await target.sendAdaptiveCard(
           AdaptiveCards.declare(notificationTemplate).render({
             title: "New Event Occurred!",
