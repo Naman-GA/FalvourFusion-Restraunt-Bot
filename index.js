@@ -34,7 +34,7 @@ const rootDialoug = new RootDialog(conversationState);
 
 const myBot = new Bot(conversationState, rootDialoug);
 
-app.use("/api/messages", (req, res) => {
+app.use("/api/messages", async (req, res) => {
   adapter.process(req, res, async (context) => {
     await myBot.run(context);
   });
@@ -44,36 +44,15 @@ app.post(
   "/api/notification",
   // Add more parsers if needed
   async (req, res) => {
-    const pageSize = 100;
-    console.log("pagesize", pageSize);
-    let continuationToken = undefined;
-    do {
-      const pagedData =
-        await notificationApp.notification.getPagedInstallations(
-          pageSize,
-          continuationToken
-        );
-      console.log(pagedData);
-      console.log("Hii");
-      const installations = pagedData.data;
-      continuationToken = pagedData.continuationToken;
-      console.log("installations", installations);
-      for (const target of await notificationApp.notification.installations()) {
-        console.log("target", target);
-        if (target.type === "Person") {
-          await target.sendAdaptiveCard(
-            AdaptiveCards.declare(notificationTemplate).render({
-              title: "New Event Occurred!",
-              appName: "Contoso App Notification",
-              description: `This is a sample http-triggered notification to ${target.type}`,
-              notificationUrl: "https://aka.ms/teamsfx-notification-new",
-            })
-          );
-        }
-      }
-    } while (continuationToken);
-    console.log("inside while");
-    res.json({});
+    // await sendAdaptiveCard(
+    //   AdaptiveCards.declare(notificationTemplate).render({
+    //     title: "New Event Occurred!",
+    //     appName: "Contoso App Notification",
+    //     description: `This is a sample http-triggered notification to ${target.type}`,
+    //     notificationUrl: "https://aka.ms/teamsfx-notification-new",
+    //   })
+    // );
+    res.send("Hi");
   }
 );
 app.listen(3000, () => {
