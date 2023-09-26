@@ -53,11 +53,24 @@ app.post(
     //     notificationUrl: "https://aka.ms/teamsfx-notification-new",
     //   })
     // );
-    const context = adapter.createTurnContext(req);
-    await myBot.run(context);
+    async (req, res) => {
+      // Create a TurnContext object using the adapter
+      const context = adapter.createTurnContext(req);
 
-    // Respond with a success message
-    res.send("Message sent: Hi");
+      // Create a message activity with type "message"
+      const message = {
+        type: "message",
+        text: "Hi", // Your message content
+      };
+
+      // Send the message using your bot
+      await context.sendActivity(message);
+
+      // Respond with a success message
+      res.send("Message sent: Hi");
+
+      // Respond with a success message
+    };
   }
 );
 app.listen(3000, () => {
