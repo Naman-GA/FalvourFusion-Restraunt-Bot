@@ -102,8 +102,6 @@ app.post(
 
       // Respond with a success message
       res.send("Notification sent.");
-
-      // Respond with a success message
     };
   }
 );
