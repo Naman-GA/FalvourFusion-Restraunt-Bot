@@ -10,7 +10,16 @@ class Bot extends ActivityHandler {
     this.accessor = this.conversationState.createProperty("DialogAccessor");
 
     this.onMessage(async (context, next) => {
-      await this.rootDialog.run(context, this.accessor);
+      const text = context.activity.text.toLowerCase();
+
+      if (text.includes("hi") || text.includes("hello")) {
+        // Respond with "Hi" when the message contains "hi" or "hello"
+        await context.sendActivity("Hi");
+      } else {
+        // Continue with your existing logic for handling other messages
+        await this.rootDialog.run(context, this.accessor);
+      }
+
       await next();
     });
     this.onMembersAdded(async (context, next) => {

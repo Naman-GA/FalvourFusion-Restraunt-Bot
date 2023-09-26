@@ -57,14 +57,9 @@ app.post(
       // Create a TurnContext object using the adapter
       const context = adapter.createTurnContext(req);
 
-      // Create a message activity with type "message"
-      const message = {
-        type: "message",
-        text: "Hi", // Your message content
-      };
-
-      // Send the message using your bot
-      await context.sendActivity(message);
+      // Create an instance of your Bot class and run it
+      const myBot = new Bot(conversationState, rootDialoug);
+      await myBot.run(context);
 
       // Respond with a success message
       res.send("Message sent: Hi");
