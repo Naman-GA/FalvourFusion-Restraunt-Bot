@@ -60,46 +60,7 @@ app.post(
 
       // Create an instance of your Bot class and run it
       const myBot = new Bot(conversationState, rootDialoug);
-      const notificationCard = {
-        type: "AdaptiveCard",
-        version: "1.0",
-        body: [
-          {
-            type: "TextBlock",
-            text: "Notification",
-            size: "large",
-            weight: "bolder",
-          },
-          {
-            type: "TextBlock",
-            text: "Title",
-            size: "medium",
-            weight: "bolder",
-          },
-          {
-            type: "TextBlock",
-            text: "Your notification title goes here",
-            wrap: true,
-          },
-          {
-            type: "TextBlock",
-            text: "Description",
-            size: "medium",
-            weight: "bolder",
-          },
-          {
-            type: "TextBlock",
-            text: "Your notification description goes here",
-            wrap: true,
-          },
-        ],
-      };
-
-      // Send the Adaptive Card as a response
-      await context.sendActivity({
-        attachments: [CardFactory.adaptiveCard(notificationCard)],
-      });
-
+      await myBot.sendNotification(context);
       // Respond with a success message
       res.send("Notification sent.");
     };

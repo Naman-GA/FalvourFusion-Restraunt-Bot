@@ -10,16 +10,8 @@ class Bot extends ActivityHandler {
     this.accessor = this.conversationState.createProperty("DialogAccessor");
 
     this.onMessage(async (context, next) => {
-      const text = context.activity.text.toLowerCase();
-
-      if (text.includes("hi") || text.includes("hello")) {
-        // Respond with "Hi" when the message contains "hi" or "hello"
-        await context.sendActivity("Hi");
-      } else {
-        // Continue with your existing logic for handling other messages
-        await this.rootDialog.run(context, this.accessor);
-      }
-
+      // Continue with your existing logic for handling other messages
+      await this.rootDialog.run(context, this.accessor);
       await next();
     });
     this.onMembersAdded(async (context, next) => {
@@ -33,6 +25,13 @@ class Bot extends ActivityHandler {
       }
       await next();
     });
+  }
+  async sendNotification(context) {
+    // Create and send a notification text message here
+    const notificationMessage =
+      "This is a notification. Your notification message goes here.";
+
+    await context.sendActivity(notificationMessage);
   }
   async run(context) {
     await super.run(context);
