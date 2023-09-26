@@ -5,6 +5,7 @@ const {
   createBotFrameworkAuthenticationFromConfiguration,
   MemoryStorage,
   ConversationState,
+  TurnContext,
 } = require("botbuilder");
 const notificationTemplate = require("./adaptiveCards/notification-default.json");
 const { notificationApp } = require("./initialize");
@@ -52,7 +53,7 @@ app.post(
     //     notificationUrl: "https://aka.ms/teamsfx-notification-new",
     //   })
     // );
-    const context = adapter.createContext(req);
+    const context = adapter.createTurnContext(req);
     await myBot.run(context);
 
     // Respond with a success message
