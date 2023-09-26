@@ -52,7 +52,11 @@ app.post(
     //     notificationUrl: "https://aka.ms/teamsfx-notification-new",
     //   })
     // );
-    res.send("Hi");
+    const context = adapter.createContext(req);
+    await myBot.run(context);
+
+    // Respond with a success message
+    res.send("Message sent: Hi");
   }
 );
 app.listen(3000, () => {
