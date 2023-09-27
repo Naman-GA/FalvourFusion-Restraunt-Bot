@@ -14,7 +14,6 @@ const { AdaptiveCards } = require("@microsoft/adaptivecards-tools");
 const { Bot } = require("./bot");
 const { RootDialog } = require("./Dialogs/rootD");
 const dotenv = require("dotenv");
-const { Context } = require("mocha");
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -94,6 +93,16 @@ app.post("/api/notification", async (req, res) => {
   // Respond with a success message
 });
 
+<<<<<<< HEAD
+=======
+      // Respond with a success message
+      res.send("Notification sent.");
+
+      // Respond with a success message
+    };
+  }
+);
+>>>>>>> parent of 74b5f1c (notification)
 app.listen(3000, () => {
   console.log("Server Listening on 3000");
 });
