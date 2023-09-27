@@ -131,10 +131,10 @@ class checkOutOrder extends ComponentDialog {
           "https://long-blue-crayfish-hem.cyclic.cloud/api/notification"; // Replace with your bot's URL
 
         try {
-          const response = await axios.post(notificationUrl, data);
+          const response = await axios.post(notificationUrl);
           console.log(response);
           console.log("Notification request sent successfully:", response.data);
-        } catch (error) { 
+        } catch (error) {
           console.error("Error sending notification request:", error);
         }
         const orderSummaryCard = CardFactory.adaptiveCard({
