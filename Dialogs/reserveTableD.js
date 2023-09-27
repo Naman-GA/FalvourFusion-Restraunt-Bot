@@ -10,7 +10,7 @@ const {
   ListStyle,
 } = require("botbuilder-dialogs");
 const Reservation = require("../models/reservation");
-const { tablebookingDialog } = require("../Components/DialogId");
+const { tablebookingDialog } = require("../Constants/DialogId");
 const DATE_TIME_PROMPT = "dateTimePrompt";
 const NAME_PROMPT = "namePrompt";
 const MOBILE_NUMBER_PROMPT = "mobileNumberPrompt";

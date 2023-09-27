@@ -1,5 +1,5 @@
 const { ComponentDialog, WaterfallDialog } = require("botbuilder-dialogs");
-const { orderFoodDialog } = require("../Components/DialogId"); // Replace with your dialog ID
+const { orderFoodDialog } = require("../Constants/DialogId"); // Replace with your dialog ID
 const { CardFactory } = require("botbuilder");
 const { orderCard } = require("../Cards/mainCard");
 const orderFoodDialogWF1 = "orderFoodDialogWF1";

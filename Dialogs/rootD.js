@@ -15,7 +15,7 @@ const {
   showMenuDialog,
   cancelorderDialog,
   trackorderDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 const {
   OrderFoodDialog,
   ReservationDialog,
@@ -73,20 +73,6 @@ class RootDialog extends ComponentDialog {
   }
 
   async routeMessage(stepContext) {
-    if (stepContext.context.activity.text) {
-      const text = stepContext.context.activity.text.toLowerCase();
-
-      if (
-        text === "hii" ||
-        text === "hi" ||
-        text === "cancel" ||
-        text === "help"
-      ) {
-        return await stepContext.context.sendActivity({
-          attachments: [CardFactory.adaptiveCard(heroCard())],
-        });
-      }
-    }
     switch (stepContext.context.activity.value.action) {
       case "orderFood":
         return await stepContext.beginDialog(orderFoodDialog);

@@ -19,7 +19,7 @@ const {
   checkoutOrder,
   cancelorderDialog,
   trackorderDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 const { heroCard } = require("../Cards/mainCard");
 const OrderData = require("../models/ordersModel");
 

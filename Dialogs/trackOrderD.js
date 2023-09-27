@@ -17,7 +17,7 @@ const {
   trackorderDialog,
   showMenuDialog,
   cancelorderDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 const { CardFactory } = require("botbuilder");
 const { heroCard } = require("../Cards/mainCard");
 

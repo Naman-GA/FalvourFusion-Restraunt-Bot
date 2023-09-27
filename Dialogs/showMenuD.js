@@ -11,7 +11,7 @@ const {
   clearCart,
   checkoutOrder,
   orderFoodDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 
 const showMenuDialogWF1 = "showMenuDialogWF1";
 const CONFIRM_PROMPT = "confirmprompt";

@@ -5,7 +5,7 @@ const {
 } = require("botbuilder-dialogs");
 const { CardFactory } = require("botbuilder");
 
-const { clearCart, showMenuDialog } = require("../Components/DialogId");
+const { clearCart, showMenuDialog } = require("../Constants/DialogId");
 const { heroCard } = require("../Cards/mainCard");
 const CONFIRM_PROMPT = "confirmprompt";
 

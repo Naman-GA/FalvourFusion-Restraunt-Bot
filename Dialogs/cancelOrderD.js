@@ -13,7 +13,7 @@ const OrderData = require("../models/ordersModel");
 const ORDER_ID_PROMPT = "orderIdPrompt";
 const CANCEL_TABLE_DIALOG = "cancelTable";
 const CHOICE_PROMPT = "choiceprompt";
-const { cancelorderDialog, showMenuDialog } = require("../Components/DialogId");
+const { cancelorderDialog, showMenuDialog } = require("../Constants/DialogId");
 
 class cancelOrderBooking extends ComponentDialog {
   constructor(conversationState) {

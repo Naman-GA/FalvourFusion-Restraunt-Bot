@@ -14,7 +14,7 @@ const CHOICE_PROMPT = "choiceprompt";
 const {
   canceltableDialog,
   tablebookingDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 class cancelTableBooking extends ComponentDialog {
   constructor(conversationState) {
     super(canceltableDialog);

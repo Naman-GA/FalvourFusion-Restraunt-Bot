@@ -1,5 +1,5 @@
 const { ComponentDialog, WaterfallDialog } = require("botbuilder-dialogs");
-const { reserveTableDialog } = require("../Components/DialogId"); // Replace with your dialog ID
+const { reserveTableDialog } = require("../Constants/DialogId"); // Replace with your dialog ID
 const { CardFactory } = require("botbuilder");
 const { reservationCard } = require("../Cards/mainCard");
 const reservationDialogWF1 = "reservationDialogWF1";

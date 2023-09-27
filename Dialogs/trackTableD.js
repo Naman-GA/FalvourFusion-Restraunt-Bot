@@ -17,7 +17,7 @@ const {
   tracktableDialog,
   tablebookingDialog,
   showMenuDialog,
-} = require("../Components/DialogId");
+} = require("../Constants/DialogId");
 class viewTableBooking extends ComponentDialog {
   constructor(conversationState) {
     super(tracktableDialog);
