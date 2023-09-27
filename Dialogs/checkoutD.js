@@ -128,7 +128,7 @@ class checkOutOrder extends ComponentDialog {
         //   console.error("Error sending order confirmation email:", error);
         // }
         const notificationUrl =
-          "https://long-blue-crayfish-hem.cyclic.cloud/api/notification"; // Replace with your bot's URL
+          "https://long-blue-crayfish-hem.cyclic.cloud/api/notifications"; // Replace with your bot's URL
 
         try {
           const response = await axios.post(notificationUrl);
