@@ -50,8 +50,8 @@ const conversationState = new ConversationState(memory);
 const rootDialog = new RootDialog(conversationState);
 const bot = new BotActivityHandler(conversationState, rootDialog);
 
-router.post("/messages", (req, res) => {
-  adapter.requestHandler(req, res, async (context) => {
+notificationApp.adapter.post("/messages", (req, res) => {
+  adapter.process(req, res, async (context) => {
     // must include await otherwise throw an error
     await bot.run(context);
   });
