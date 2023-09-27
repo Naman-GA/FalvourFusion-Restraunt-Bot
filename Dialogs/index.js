@@ -1,5 +1,4 @@
 module.exports = {
-  RootDialog: require("./rootD").RootDialog,
   OrderFoodDialog: require("./foodD").OrderFoodDialog,
   ReservationDialog: require("./tableD").ReservationDialog,
   TableReservationDialog: require("./reserveTableD").TableReservationDialog,
