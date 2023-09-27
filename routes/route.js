@@ -51,7 +51,7 @@ const rootDialog = new RootDialog(conversationState);
 const bot = new BotActivityHandler(conversationState, rootDialog);
 
 router.post("/messages", (req, res) => {
-  notificationApp.requestHandler(req, res, async (context) => {
+  adapter.requestHandler(req, res, async (context) => {
     // must include await otherwise throw an error
     await bot.run(context);
   });
